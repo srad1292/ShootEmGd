@@ -1,7 +1,9 @@
 extends Node2D
 
+const bullet_scene = preload("res://Scenes/bullet.tscn")
+
 var fireCounter: int = 0
-var delay: float = 0.4
+var delay: float = 0.1
 var elapsed: float = delay
 
 # Called when the node enters the scene tree for the first time.
@@ -18,3 +20,6 @@ func _input(event):
 		print("I fired: %d" % fireCounter)
 		fireCounter += 1
 		elapsed = 0.0
+		var bullet = bullet_scene.instantiate()
+		bullet.position = $"../PlayerBody".get_position()
+		add_child(bullet)
