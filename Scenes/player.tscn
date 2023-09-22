@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Weapon.gd" id="3_ipq36"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pfn34"]
-size = Vector2(84, 72)
+size = Vector2(68, 63)
 
 [node name="Player" type="Node2D"]
 position = Vector2(615, 563)
@@ -17,7 +17,7 @@ script = ExtResource("1_u6wln")
 shape = SubResource("RectangleShape2D_pfn34")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerBody/CollisionShape2D"]
-scale = Vector2(0.08, 0.08)
+scale = Vector2(0.065, 0.065)
 texture = ExtResource("1_uoolc")
 
 [node name="Weapon" type="Node2D" parent="."]
