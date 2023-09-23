@@ -10,7 +10,6 @@ var timer: Timer = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print("I am at: %f, %f" % [get_position().x, get_position().y])
 	setup_timer()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

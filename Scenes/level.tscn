@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://cf5pwiorrbhf7"]
+[gd_scene load_steps=6 format=3 uid="uid://cf5pwiorrbhf7"]
 
 [ext_resource type="Texture2D" uid="uid://bx6ms1uphdi8h" path="res://Sprites/background.jpg" id="1_vtes1"]
 [ext_resource type="PackedScene" uid="uid://5l82p5amk2n0" path="res://Scenes/player.tscn" id="2_gndru"]
 [ext_resource type="PackedScene" uid="uid://d22yqvb8vtbtk" path="res://Scenes/enemy_spawner.tscn" id="3_ibl7f"]
+[ext_resource type="PackedScene" uid="uid://d3v2k0sin5lrr" path="res://Scenes/bullet_shredder.tscn" id="4_h6gu7"]
+[ext_resource type="PackedScene" uid="uid://cb385s3v16lkk" path="res://Scenes/enemy_shredder.tscn" id="5_r6jgk"]
 
 [node name="Level" type="Node2D"]
 
@@ -15,3 +17,8 @@ texture = ExtResource("1_vtes1")
 [node name="Player" parent="." instance=ExtResource("2_gndru")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_ibl7f")]
+
+[node name="BulletShredder" parent="." instance=ExtResource("4_h6gu7")]
+position = Vector2(536, -98)
+
+[node name="EnemyShredder" parent="." instance=ExtResource("5_r6jgk")]

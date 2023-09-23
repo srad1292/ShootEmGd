@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb385s3v16lkk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_que03"]
+size = Vector2(1283, 20)
+
+[node name="EnemyShredder" type="Node2D" groups=["EnemyShredder"]]
+position = Vector2(596, 704)
+
+[node name="Area2D" type="Area2D" parent="." groups=["EnemyShredder"]]
+collision_layer = 16
+collision_mask = 4
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7.5, 3)
+shape = SubResource("RectangleShape2D_que03")

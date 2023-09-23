@@ -10,3 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	move_local_y(delta * speed * -1)
+
+
+func _on_area_2d_area_entered(area):
+	queue_free() # Replace with function body.

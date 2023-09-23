@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3v2k0sin5lrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhx7v"]
+size = Vector2(1316, 20)
+
+[node name="BulletShredder" type="Node2D"]
+position = Vector2(530, -186)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(47, 0)
+shape = SubResource("RectangleShape2D_hhx7v")

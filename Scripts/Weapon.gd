@@ -17,7 +17,6 @@ func _process(delta):
 	
 func _input(event):
 	if(event.is_action_pressed("ui_accept") && elapsed >= delay):
-		print("I fired: %d" % fireCounter)
 		fireCounter += 1
 		elapsed = 0.0
 		var bullet = bullet_scene.instantiate()

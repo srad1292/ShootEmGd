@@ -11,6 +11,8 @@ radius = 26.0192
 script = ExtResource("1_828n2")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 26
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_yk5ok")
@@ -20,3 +22,6 @@ modulate = Color(0.996078, 0, 0, 1)
 scale = Vector2(0.045, 0.045)
 texture = ExtResource("1_fque0")
 script = ExtResource("3_j1xur")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
