@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
-
-const SPEED = 420.0
+const SPEED = 490.0
 
 
 func _physics_process(delta):
@@ -14,3 +13,4 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+

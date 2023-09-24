@@ -1,11 +1,13 @@
-extends Area2D
+extends Node2D
+
+signal enemy_killed
 
 const enemyScene = preload("res://Scenes/enemy.tscn")
 
-var minX: float = -490.0
-var maxX: float = 490.0
-var minDelay: float = 1.2
-var maxDelay: float = 2.1
+var minX: float = -450.0
+var maxX: float = 450.0
+var minDelay: float = 0.6
+var maxDelay: float = 1.5
 var timer: Timer = null
 
 # Called when the node enters the scene tree for the first time.
@@ -30,9 +32,13 @@ func spawn_enemy():
 	var enemy = enemyScene.instantiate()
 	enemy.position = spawnPosition
 	add_child(enemy)
+	enemy.connect("killed", handle_enemy_killed)
 	timer.set_wait_time(randf_range(minDelay, maxDelay))
 	
 func get_spawn_position():
 	var spawnPosition: Vector2 = Vector2(get_position())
 	spawnPosition.x = randf_range(minX, maxX)
 	return spawnPosition
+	
+func handle_enemy_killed():
+	enemy_killed.emit()

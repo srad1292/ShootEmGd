@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf5pwiorrbhf7"]
+[gd_scene load_steps=7 format=3 uid="uid://cf5pwiorrbhf7"]
 
 [ext_resource type="Texture2D" uid="uid://bx6ms1uphdi8h" path="res://Sprites/background.jpg" id="1_vtes1"]
+[ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_612lf"]
 [ext_resource type="PackedScene" uid="uid://5l82p5amk2n0" path="res://Scenes/player.tscn" id="2_gndru"]
 [ext_resource type="PackedScene" uid="uid://d22yqvb8vtbtk" path="res://Scenes/enemy_spawner.tscn" id="3_ibl7f"]
 [ext_resource type="PackedScene" uid="uid://d3v2k0sin5lrr" path="res://Scenes/bullet_shredder.tscn" id="4_h6gu7"]
@@ -14,6 +15,32 @@ position = Vector2(601, 362)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_vtes1")
 
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("2_612lf")
+
+[node name="Lives" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0.776471)
+offset_right = 126.0
+offset_bottom = 91.0
+theme_override_font_sizes/font_size = 64
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Label" parent="HUD"]
+modulate = Color(1, 1, 1, 0.776471)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -313.0
+offset_right = -14.0
+offset_bottom = 91.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 64
+text = "9999999"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="Player" parent="." instance=ExtResource("2_gndru")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_ibl7f")]
@@ -22,3 +49,7 @@ texture = ExtResource("1_vtes1")
 position = Vector2(536, -98)
 
 [node name="EnemyShredder" parent="." instance=ExtResource("5_r6jgk")]
+
+[connection signal="damage_taken" from="Player" to="HUD" method="_on_player_damage_taken"]
+[connection signal="enemy_killed" from="EnemySpawner" to="HUD" method="_on_enemy_spawner_enemy_killed"]
+[connection signal="enemy_escaped" from="EnemyShredder" to="HUD" method="_on_enemy_shredder_enemy_escaped"]

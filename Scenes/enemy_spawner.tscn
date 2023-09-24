@@ -1,18 +1,17 @@
 [gd_scene load_steps=3 format=3 uid="uid://d22yqvb8vtbtk"]
 
-[ext_resource type="Script" path="res://Scripts/EnemySpawnArea.gd" id="1_cgrab"]
+[ext_resource type="Script" path="res://Scripts/enemy_spawner.gd" id="1_xbst2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ype7g"]
 size = Vector2(1077, 39)
 
 [node name="EnemySpawner" type="Node2D"]
+position = Vector2(575, -20)
+script = ExtResource("1_xbst2")
 
 [node name="EnemySpawnArea" type="Area2D" parent="."]
-position = Vector2(575, -20)
 collision_layer = 0
 collision_mask = 0
-script = ExtResource("1_cgrab")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawnArea"]
-position = Vector2(-4.5, -9.5)
 shape = SubResource("RectangleShape2D_ype7g")

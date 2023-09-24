@@ -1,7 +1,9 @@
 extends Node2D
 
-var maxSpeed: float = 380
-var minSpeed: float = 180
+signal killed
+
+var maxSpeed: float = 360
+var minSpeed: float = 200
 var speed: float = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -22,6 +24,7 @@ func _on_area_2d_area_entered(area):
 		queue_free()
 	elif area.is_in_group("Bullet"):
 		print("Enemy collided with bullet")
+		killed.emit()
 		queue_free()
 
 
