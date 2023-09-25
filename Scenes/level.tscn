@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf5pwiorrbhf7"]
+[gd_scene load_steps=8 format=3 uid="uid://cf5pwiorrbhf7"]
 
 [ext_resource type="Texture2D" uid="uid://bx6ms1uphdi8h" path="res://Sprites/background.jpg" id="1_vtes1"]
 [ext_resource type="Script" path="res://Scripts/HUD.gd" id="2_612lf"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://d22yqvb8vtbtk" path="res://Scenes/enemy_spawner.tscn" id="3_ibl7f"]
 [ext_resource type="PackedScene" uid="uid://d3v2k0sin5lrr" path="res://Scenes/bullet_shredder.tscn" id="4_h6gu7"]
 [ext_resource type="PackedScene" uid="uid://cb385s3v16lkk" path="res://Scenes/enemy_shredder.tscn" id="5_r6jgk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4sqb"]
+size = Vector2(51, 175)
 
 [node name="Level" type="Node2D"]
 
@@ -41,6 +44,25 @@ text = "9999999"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="HUD"]
+visible = false
+custom_minimum_size = Vector2(200, 80)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.0
+offset_top = -34.0
+offset_right = 96.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 32
+text = "RESTART"
+
 [node name="Player" parent="." instance=ExtResource("2_gndru")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_ibl7f")]
@@ -50,6 +72,29 @@ position = Vector2(536, -98)
 
 [node name="EnemyShredder" parent="." instance=ExtResource("5_r6jgk")]
 
+[node name="Blockers" type="Node2D" parent="."]
+
+[node name="Left" type="StaticBody2D" parent="Blockers"]
+position = Vector2(-11, 558)
+collision_layer = 64
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockers/Left"]
+position = Vector2(15.5, 0.5)
+shape = SubResource("RectangleShape2D_x4sqb")
+
+[node name="Right" type="StaticBody2D" parent="Blockers"]
+position = Vector2(1136, 558)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Blockers/Right"]
+position = Vector2(15.5, 0.5)
+shape = SubResource("RectangleShape2D_x4sqb")
+
+[connection signal="game_over" from="HUD" to="Player" method="_on_hud_game_over"]
+[connection signal="game_over" from="HUD" to="EnemySpawner" method="_on_hud_game_over"]
+[connection signal="restart_game" from="HUD" to="Player" method="_on_hud_restart_game"]
+[connection signal="restart_game" from="HUD" to="EnemySpawner" method="_on_hud_restart_game"]
+[connection signal="pressed" from="HUD/Button" to="HUD" method="_on_button_pressed"]
 [connection signal="damage_taken" from="Player" to="HUD" method="_on_player_damage_taken"]
 [connection signal="enemy_killed" from="EnemySpawner" to="HUD" method="_on_enemy_spawner_enemy_killed"]
 [connection signal="enemy_escaped" from="EnemyShredder" to="HUD" method="_on_enemy_shredder_enemy_escaped"]

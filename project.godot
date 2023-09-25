@@ -27,6 +27,7 @@ project/assembly_name="Shoot Em Gd"
 2d_physics/layer_4="Player"
 2d_physics/layer_5="EnemyShredder"
 2d_physics/layer_6="BulletShredder"
+2d_physics/layer_7="Wall"
 
 [rendering]
 

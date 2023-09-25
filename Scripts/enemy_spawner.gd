@@ -9,15 +9,12 @@ var maxX: float = 450.0
 var minDelay: float = 0.6
 var maxDelay: float = 1.5
 var timer: Timer = null
+var shouldSpawn: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setup_timer()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-	
 func setup_timer():
 	timer = Timer.new()
 	add_child(timer)
@@ -42,3 +39,13 @@ func get_spawn_position():
 	
 func handle_enemy_killed():
 	enemy_killed.emit()
+
+
+func _on_hud_game_over():
+	timer.stop()
+	shouldSpawn = false
+
+
+func _on_hud_restart_game():
+	shouldSpawn = true
+	timer.start()
